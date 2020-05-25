@@ -4,7 +4,16 @@ import com.mpolder.circuit.Circuit;
 import com.mpolder.exception.CircuitFormatException;
 
 public abstract class IGate {
-    public abstract boolean getOutput() throws CircuitFormatException;
+    Boolean output;
+
+    public boolean getOutput() {
+        if(output == null) {
+            output = calculateOutput();
+        }
+        return output;
+    }
+
+    abstract boolean calculateOutput() throws CircuitFormatException;
 
     public abstract void attachOutput(IGate gate);
 

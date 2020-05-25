@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CircuitParser {
+public class CircuitParser implements ICircuitParser {
     private IReader reader;
     private IGateFactory gateFactory;
 

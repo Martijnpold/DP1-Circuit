@@ -4,14 +4,12 @@ import com.mpolder.circuit.Circuit;
 import com.mpolder.exception.CircuitFormatException;
 
 public class InputGate extends IGate {
-    private boolean output;
-
     InputGate(boolean output) {
         this.output = output;
     }
 
     @Override
-    public boolean getOutput() throws CircuitFormatException {
+    public boolean calculateOutput() throws CircuitFormatException {
         return output;
     }
 
