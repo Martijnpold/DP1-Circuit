@@ -1,13 +1,19 @@
 package com.mpolder.gate;
 
+import com.mpolder.exception.CircuitLoopException;
+
 public class NotGate extends ISingleInputGate {
     public NotGate(String id) {
         super(id);
     }
 
     @Override
-    public boolean calculateOutput() {
-        return !input.getOutput();
+    public boolean calculateOutput() throws CircuitLoopException {
+        try {
+            return !input.getOutput();
+        } catch (StackOverflowError e) {
+            throw new CircuitLoopException();
+        }
     }
 
     @Override

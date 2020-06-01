@@ -1,5 +1,6 @@
 package com.mpolder.gate;
 
+import com.mpolder.circuit.Circuit;
 import com.mpolder.exception.CircuitFormatException;
 import com.mpolder.exception.CircuitNodeAlreadyAttachedException;
 
@@ -19,6 +20,11 @@ public class InputGate extends IGate {
     @Override
     public void attachInput(IGate gate) throws CircuitFormatException {
         throw new CircuitNodeAlreadyAttachedException();
+    }
+
+    @Override
+    public void attachCircuit(Circuit circuit) {
+        circuit.attachInput(this);
     }
 
     @Override
