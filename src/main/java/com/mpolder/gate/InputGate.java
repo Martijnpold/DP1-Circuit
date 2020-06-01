@@ -1,30 +1,38 @@
 package com.mpolder.gate;
 
-import com.mpolder.circuit.Circuit;
 import com.mpolder.exception.CircuitFormatException;
+import com.mpolder.exception.CircuitNodeAlreadyAttachedException;
 
 public class InputGate extends IGate {
-    InputGate(boolean output) {
+    private final boolean output;
+
+    InputGate(String id, boolean output) {
+        super(id);
         this.output = output;
     }
 
     @Override
-    public boolean calculateOutput() throws CircuitFormatException {
+    public boolean calculateOutput() {
         return output;
     }
 
     @Override
-    public void attachOutput(IGate gate) {
-
+    public void attachInput(IGate gate) throws CircuitFormatException {
+        throw new CircuitNodeAlreadyAttachedException();
     }
 
     @Override
-    public void attachCircuit(Circuit circuit) {
-
-    }
-
-    @Override
-    public boolean validate() {
+    public boolean requiresOutput() {
         return false;
+    }
+
+    @Override
+    public boolean validateInput() {
+        return true;
+    }
+
+    @Override
+    public IGate cloneGate(String id) {
+        return new InputGate(id, output);
     }
 }

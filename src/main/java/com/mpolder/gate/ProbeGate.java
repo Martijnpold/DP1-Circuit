@@ -1,26 +1,29 @@
 package com.mpolder.gate;
 
 import com.mpolder.circuit.Circuit;
-import com.mpolder.exception.CircuitFormatException;
 
-public class ProbeGate extends IGate {
-    @Override
-    public boolean calculateOutput() throws CircuitFormatException {
-        return false;
+public class ProbeGate extends ISingleInputGate {
+    public ProbeGate(String id) {
+        super(id);
     }
 
     @Override
-    public void attachOutput(IGate gate) {
-
+    public boolean calculateOutput() {
+        return input.getOutput();
     }
 
     @Override
     public void attachCircuit(Circuit circuit) {
-
+        circuit.attachOutput(this);
     }
 
     @Override
-    public boolean validate() {
+    public boolean requiresOutput() {
         return false;
+    }
+
+    @Override
+    public IGate cloneGate(String id) {
+        return new ProbeGate(id);
     }
 }

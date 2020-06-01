@@ -15,7 +15,7 @@ public class FileReader implements IReader {
 
     public List<String> read() throws IOException {
         return Files.readAllLines(file.toPath()).stream()
-                .filter(o -> o.startsWith("#"))
+                .filter(o -> !o.startsWith("#"))
                 .map(o -> o.replace("\t", ""))
                 .map(o -> o.replace(" ", ""))
                 .map(o -> o.replace(";", ""))

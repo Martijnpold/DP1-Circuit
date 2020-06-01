@@ -21,25 +21,34 @@ public class CircuitParser implements ICircuitParser {
 
     public List<IGate> parse() throws IOException, CircuitFormatException {
         HashMap<String, IGate> gates = new HashMap<>();
+        List<IGate> unconnected = new ArrayList<>();
+
         for (String line : reader.read()) {
             String[] parts = line.split(":");
             if (parts.length == 2) {
                 String name = parts[0];
                 String part = parts[1];
                 if (!gates.containsKey(name)) {
-                    gates.put(name, gateFactory.create(part));
+                    IGate newGate = gateFactory.create(part, name);
+                    gates.put(name, newGate);
+                    if (newGate.requiresOutput())
+                        unconnected.add(newGate);
                 } else {
                     IGate original = gates.get(name);
                     if (original != null) {
                         String[] toLink = part.split(",");
                         for (String link : toLink) {
-                            original.attachOutput(gates.get(link));
+                            gates.get(link).attachInput(original);
+                            unconnected.remove(original);
                         }
                     }
-                    if (original == null || !original.validate()) {
-                        throw new CircuitNodeDetachedException();
-                    }
                 }
+            }
+        }
+        if (unconnected.size() > 0) throw new CircuitNodeDetachedException();
+        for (IGate gate : gates.values()) {
+            if (gate == null || !gate.validate()) {
+                throw new CircuitNodeDetachedException();
             }
         }
         return new ArrayList<>(gates.values());

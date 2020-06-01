@@ -1,26 +1,17 @@
 package com.mpolder.gate;
 
-import com.mpolder.circuit.Circuit;
-import com.mpolder.exception.CircuitFormatException;
-
-public class NorGate extends IGate {
-    @Override
-    public boolean calculateOutput() throws CircuitFormatException {
-        return false;
+public class NorGate extends IMultiInputGate {
+    public NorGate(String id) {
+        super(id);
     }
 
     @Override
-    public void attachOutput(IGate gate) {
-
+    public boolean calculateOutput() {
+        return combinedInputs() == 0;
     }
 
     @Override
-    public void attachCircuit(Circuit circuit) {
-
-    }
-
-    @Override
-    public boolean validate() {
-        return false;
+    public IGate cloneGate(String id) {
+        return new NorGate(id);
     }
 }

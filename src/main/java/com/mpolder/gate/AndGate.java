@@ -1,26 +1,17 @@
 package com.mpolder.gate;
 
-import com.mpolder.circuit.Circuit;
-import com.mpolder.exception.CircuitFormatException;
-
-public class AndGate extends IGate {
-    @Override
-    public boolean calculateOutput() throws CircuitFormatException {
-        return false;
+public class AndGate extends IMultiInputGate {
+    public AndGate(String id) {
+        super(id);
     }
 
     @Override
-    public void attachOutput(IGate gate) {
-
+    public boolean calculateOutput() {
+        return combinedInputs() == inputs.size();
     }
 
     @Override
-    public void attachCircuit(Circuit circuit) {
-
-    }
-
-    @Override
-    public boolean validate() {
-        return false;
+    public IGate cloneGate(String id) {
+        return new AndGate(id);
     }
 }

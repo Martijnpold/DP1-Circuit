@@ -3,26 +3,60 @@ package com.mpolder.gate;
 import com.mpolder.circuit.Circuit;
 import com.mpolder.exception.CircuitFormatException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class IGate {
-    Boolean output;
+    private String id;
+    protected Boolean output;
+    protected List<IGate> outputs;
+
+    public IGate(String id) {
+        this.id = id;
+        outputs = new ArrayList<>();
+    }
 
     public boolean getOutput() {
-        if(output == null) {
+        if (output == null) {
             output = calculateOutput();
         }
         return output;
     }
 
-    abstract boolean calculateOutput() throws CircuitFormatException;
+    abstract boolean calculateOutput();
 
-    public abstract void attachOutput(IGate gate);
+    public abstract void attachInput(IGate gate) throws CircuitFormatException;
 
-    public abstract void attachCircuit(Circuit circuit);
+    protected void attachOutput(IGate gate) {
+        outputs.add(gate);
+    }
 
-    public abstract boolean validate();
+    public void attachCircuit(Circuit circuit) {
+        //No default
+    }
 
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public boolean requiresOutput() {
+        return true;
+    }
+
+    public abstract boolean validateInput();
+
+    public boolean validateOutput() {
+        if(!requiresOutput()) return true;
+        return outputs.size() > 0;
+    }
+
+    public boolean validate() {
+        return validateInput() && validateOutput();
+    }
+
+    public abstract IGate cloneGate(String id);
+
+    public String getId() {
+        return id;
+    }
+
+    public List<IGate> getOutputs() {
+        return outputs;
     }
 }

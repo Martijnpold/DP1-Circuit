@@ -7,30 +7,28 @@ import java.util.HashMap;
 public class GateFactory implements IGateFactory {
     private HashMap<String, IGate> gates;
 
+    private static final String DEF_ID = "UNKNOWN";
+
     public GateFactory() {
         gates = new HashMap<>();
         init();
     }
 
     private void init() {
-        gates.put("INPUT_HIGH", new InputGate(true));
-        gates.put("INPUT_LOW", new InputGate(false));
-        gates.put("AND", new AndGate());
-        gates.put("NAND", new NandGate());
-        gates.put("NOR", new NorGate());
-        gates.put("NOT", new NotGate());
-        gates.put("OR", new OrGate());
-        gates.put("PROBE", new ProbeGate());
-        gates.put("XOR", new XorGate());
+        gates.put("INPUT_HIGH", new InputGate(DEF_ID, true));
+        gates.put("INPUT_LOW", new InputGate(DEF_ID, false));
+        gates.put("AND", new AndGate(DEF_ID));
+        gates.put("NAND", new NandGate(DEF_ID));
+        gates.put("NOR", new NorGate(DEF_ID));
+        gates.put("NOT", new NotGate(DEF_ID));
+        gates.put("OR", new OrGate(DEF_ID));
+        gates.put("PROBE", new ProbeGate(DEF_ID));
+        gates.put("XOR", new XorGate(DEF_ID));
     }
 
-    public IGate create(String gate) throws CircuitNodeTypeNotFoundException {
-        try {
-            if (gates.containsKey(gate)) {
-                return (IGate) gates.get(gate).clone();
-            }
-        } catch (CloneNotSupportedException e) {
-            //Ignore
+    public IGate create(String gate, String id) throws CircuitNodeTypeNotFoundException {
+        if (gates.containsKey(gate)) {
+            return gates.get(gate).cloneGate(id);
         }
         throw new CircuitNodeTypeNotFoundException();
     }
