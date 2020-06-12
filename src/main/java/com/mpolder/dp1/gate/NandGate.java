@@ -1,4 +1,4 @@
-package com.mpolder.gate;
+package com.mpolder.dp1.gate;
 
 public class NandGate extends IMultiInputGate {
     public NandGate(String id) {

@@ -1,6 +1,6 @@
-package com.mpolder.gate;
+package com.mpolder.dp1.gate;
 
-import com.mpolder.exception.CircuitNodeTypeNotFoundException;
+import com.mpolder.dp1.exception.CircuitNodeTypeNotFoundException;
 
 import java.util.HashMap;
 

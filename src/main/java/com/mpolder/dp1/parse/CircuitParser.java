@@ -1,9 +1,9 @@
-package com.mpolder.parse;
+package com.mpolder.dp1.parse;
 
-import com.mpolder.exception.CircuitFormatException;
-import com.mpolder.exception.CircuitNodeDetachedException;
-import com.mpolder.gate.IGate;
-import com.mpolder.gate.IGateFactory;
+import com.mpolder.dp1.exception.CircuitFormatException;
+import com.mpolder.dp1.exception.CircuitNodeDetachedException;
+import com.mpolder.dp1.gate.IGate;
+import com.mpolder.dp1.gate.IGateFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;

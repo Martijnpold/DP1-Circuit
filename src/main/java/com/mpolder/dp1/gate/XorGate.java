@@ -1,4 +1,4 @@
-package com.mpolder.gate;
+package com.mpolder.dp1.gate;
 
 public class XorGate extends IMultiInputGate {
     public XorGate(String id) {

@@ -1,6 +1,4 @@
-package com.mpolder.gate;
-
-import com.mpolder.exception.CircuitNodeAlreadyAttachedException;
+package com.mpolder.dp1.gate;
 
 import java.util.ArrayList;
 import java.util.List;

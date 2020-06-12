@@ -1,11 +1,11 @@
 package com.mpolder.dp1.test;
 
-import com.mpolder.circuit.Circuit;
-import com.mpolder.circuit.CircuitBuilder;
-import com.mpolder.exception.CircuitLoopException;
-import com.mpolder.exception.CircuitNodeDetachedException;
-import com.mpolder.gate.ProbeGate;
-import com.mpolder.parse.FileReader;
+import com.mpolder.dp1.circuit.Circuit;
+import com.mpolder.dp1.circuit.CircuitBuilder;
+import com.mpolder.dp1.exception.CircuitLoopException;
+import com.mpolder.dp1.exception.CircuitNodeDetachedException;
+import com.mpolder.dp1.gate.ProbeGate;
+import com.mpolder.dp1.parse.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

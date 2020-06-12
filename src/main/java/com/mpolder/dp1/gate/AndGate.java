@@ -1,4 +1,4 @@
-package com.mpolder.gate;
+package com.mpolder.dp1.gate;
 
 public class AndGate extends IMultiInputGate {
     public AndGate(String id) {

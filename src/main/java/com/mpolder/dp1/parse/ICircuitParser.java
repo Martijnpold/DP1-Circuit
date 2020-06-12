@@ -1,7 +1,7 @@
-package com.mpolder.parse;
+package com.mpolder.dp1.parse;
 
-import com.mpolder.exception.CircuitFormatException;
-import com.mpolder.gate.IGate;
+import com.mpolder.dp1.exception.CircuitFormatException;
+import com.mpolder.dp1.gate.IGate;
 
 import java.io.IOException;
 import java.util.List;

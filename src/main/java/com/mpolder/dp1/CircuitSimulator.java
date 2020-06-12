@@ -1,4 +1,4 @@
-package com.mpolder;
+package com.mpolder.dp1;
 
 public class CircuitSimulator {
 

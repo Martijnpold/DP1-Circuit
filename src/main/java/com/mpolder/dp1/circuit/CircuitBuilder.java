@@ -1,12 +1,12 @@
-package com.mpolder.circuit;
+package com.mpolder.dp1.circuit;
 
-import com.mpolder.gate.GateFactory;
-import com.mpolder.gate.IGate;
-import com.mpolder.gate.IGateFactory;
-import com.mpolder.parse.CircuitParser;
-import com.mpolder.parse.FileReader;
-import com.mpolder.parse.ICircuitParser;
-import com.mpolder.parse.IReader;
+import com.mpolder.dp1.gate.GateFactory;
+import com.mpolder.dp1.gate.IGate;
+import com.mpolder.dp1.gate.IGateFactory;
+import com.mpolder.dp1.parse.CircuitParser;
+import com.mpolder.dp1.parse.FileReader;
+import com.mpolder.dp1.parse.ICircuitParser;
+import com.mpolder.dp1.parse.IReader;
 
 import java.io.File;
 import java.io.IOException;

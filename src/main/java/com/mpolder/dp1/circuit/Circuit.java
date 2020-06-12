@@ -1,8 +1,8 @@
-package com.mpolder.circuit;
+package com.mpolder.dp1.circuit;
 
-import com.mpolder.gate.IGate;
-import com.mpolder.gate.InputGate;
-import com.mpolder.gate.ProbeGate;
+import com.mpolder.dp1.gate.IGate;
+import com.mpolder.dp1.gate.InputGate;
+import com.mpolder.dp1.gate.ProbeGate;
 
 import java.util.ArrayList;
 import java.util.List;

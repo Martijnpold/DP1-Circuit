@@ -1,7 +1,7 @@
-package com.mpolder.gate;
+package com.mpolder.dp1.gate;
 
-import com.mpolder.circuit.Circuit;
-import com.mpolder.exception.CircuitFormatException;
+import com.mpolder.dp1.circuit.Circuit;
+import com.mpolder.dp1.exception.CircuitFormatException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.mpolder.gate;
+package com.mpolder.dp1.gate;
 
-import com.mpolder.exception.CircuitFormatException;
-import com.mpolder.exception.CircuitNodeAlreadyAttachedException;
+import com.mpolder.dp1.exception.CircuitFormatException;
+import com.mpolder.dp1.exception.CircuitNodeAlreadyAttachedException;
 
 public abstract class ISingleInputGate extends IGate {
     protected IGate input;

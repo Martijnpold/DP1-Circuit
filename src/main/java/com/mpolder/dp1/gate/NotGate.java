@@ -1,6 +1,6 @@
-package com.mpolder.gate;
+package com.mpolder.dp1.gate;
 
-import com.mpolder.exception.CircuitLoopException;
+import com.mpolder.dp1.exception.CircuitLoopException;
 
 public class NotGate extends ISingleInputGate {
     public NotGate(String id) {
