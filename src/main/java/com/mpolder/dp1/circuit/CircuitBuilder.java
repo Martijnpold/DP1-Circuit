@@ -1,5 +1,6 @@
 package com.mpolder.dp1.circuit;
 
+import com.mpolder.dp1.exception.CircuitFormatException;
 import com.mpolder.dp1.exception.CircuitLoopException;
 import com.mpolder.dp1.exception.CircuitNodeDetachedException;
 import com.mpolder.dp1.gate.GateFactory;
@@ -23,20 +24,27 @@ public class CircuitBuilder {
     public CircuitBuilder() {
         reader = new FileReader(new File("circuit.txt"));
         gateFactory = new GateFactory();
-        circuitParser = new CircuitParser(reader, gateFactory);
+        circuitParser = new CircuitParser();
     }
 
-    public Circuit build() {
+    /**
+     * Build a circuit using the given circuitparser, reader and gatefactory
+     *
+     * @return Constructed circuit
+     * @throws CircuitFormatException when the given circuit is invalid
+     */
+    public Circuit build() throws CircuitFormatException {
         try {
-            List<IGate> gates = circuitParser.parse();
+            List<IGate> gates = circuitParser.parse(gateFactory, reader.read());
             Circuit c = new Circuit();
             for (IGate gate : gates) c.attachGate(gate);
             validateOutput(c);
             return c;
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (RuntimeException e) {
+        } catch (CircuitFormatException e) {
             System.out.println("Could not construct a valid circuit using the given parameters");
+            System.out.println("Reason: " + e.getMessage());
             throw e;
         }
         return null;
@@ -59,11 +67,13 @@ public class CircuitBuilder {
 
     public void setReader(IReader reader) {
         this.reader = reader;
-        circuitParser = new CircuitParser(reader, gateFactory);
     }
 
     public void setGateFactory(IGateFactory gateFactory) {
         this.gateFactory = gateFactory;
-        circuitParser = new CircuitParser(reader, gateFactory);
+    }
+
+    public void setParser(ICircuitParser parser) {
+        this.circuitParser = parser;
     }
 }

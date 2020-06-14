@@ -5,9 +5,9 @@ import com.mpolder.dp1.exception.CircuitNodeTypeNotFoundException;
 import java.util.HashMap;
 
 public class GateFactory implements IGateFactory {
-    private HashMap<String, IGate> gates;
+    private final HashMap<String, IGate> gates;
 
-    private static final String DEF_ID = "UNKNOWN";
+    private static final String DEF_ID = "FACTORY_GATE";
 
     public GateFactory() {
         gates = new HashMap<>();

@@ -9,18 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CircuitParser implements ICircuitParser {
-    private IReader reader;
-    private IGateFactory gateFactory;
-
-    public CircuitParser(IReader reader, IGateFactory gateFactory) {
-        this.reader = reader;
-        this.gateFactory = gateFactory;
-    }
-
-    public List<IGate> parse() throws IOException {
+    public List<IGate> parse(IGateFactory gateFactory, List<String> lines) throws IOException {
         HashMap<String, IGate> gates = new HashMap<>();
 
-        for (String line : reader.read()) {
+        for (String line : lines) {
             String[] parts = line.split(":");
             if (parts.length == 2) {
                 String name = parts[0];
