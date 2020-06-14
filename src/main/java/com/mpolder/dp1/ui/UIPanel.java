@@ -72,7 +72,7 @@ public class UIPanel extends JPanel {
         }
     }
 
-    private MouseAdapter getDragDropMouseListener() {
+    public MouseAdapter getDragDropMouseListener() {
         return new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -127,5 +127,9 @@ public class UIPanel extends JPanel {
         int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
         g.setFont(font);
         g.drawString(text, x, y);
+    }
+
+    public UIGate getDrag() {
+        return drag;
     }
 }

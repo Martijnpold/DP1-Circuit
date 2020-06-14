@@ -15,4 +15,8 @@ public class UIFrame extends JFrame {
         setContentPane(uiPanel);
         pack();
     }
+
+    public UIPanel getUiPanel() {
+        return uiPanel;
+    }
 }

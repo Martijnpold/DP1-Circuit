@@ -1,0 +1,4 @@
+#IgnoredLine
+firstLine
+#IgnoredLine
+secondLine

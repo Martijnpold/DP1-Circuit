@@ -46,4 +46,8 @@ public class InputGate extends IGate {
     public IGate cloneGate(String id) {
         return new InputGate(id, output);
     }
+
+    public void setOutput(boolean output) {
+        this.output = output;
+    }
 }

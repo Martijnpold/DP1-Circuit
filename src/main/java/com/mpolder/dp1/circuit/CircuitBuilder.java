@@ -46,11 +46,11 @@ public class CircuitBuilder {
             return c;
         } catch (IOException e) {
             e.printStackTrace();
+            throw new CircuitFormatException("Specified file not found");
         } catch (CircuitFormatException e) {
             exceptionStrategy.execute(e);
             throw e;
         }
-        return null;
     }
 
     private void validateOutput(Circuit circuit) {

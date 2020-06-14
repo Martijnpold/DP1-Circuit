@@ -19,6 +19,7 @@ public class FileReader implements IReader {
                 .map(o -> o.replace("\t", ""))
                 .map(o -> o.replace(" ", ""))
                 .map(o -> o.replace(";", ""))
+                .filter(o -> o.length() > 0)
                 .collect(Collectors.toList());
     }
 }
