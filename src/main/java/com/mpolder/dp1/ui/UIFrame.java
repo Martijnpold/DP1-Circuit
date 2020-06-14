@@ -1,4 +1,4 @@
-package com.mpolder.dp1.gate.ui;
+package com.mpolder.dp1.ui;
 
 import com.mpolder.dp1.circuit.Circuit;
 

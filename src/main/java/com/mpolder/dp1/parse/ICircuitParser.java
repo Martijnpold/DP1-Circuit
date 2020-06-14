@@ -8,5 +8,12 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ICircuitParser {
+    /**
+     * Parse given lines using the gatefactory provided
+     *
+     * @param gateFactory gate factory to fetch gates from
+     * @param lines       lines to use as input
+     * @return constructed gates
+     */
     List<IGate> parse(IGateFactory gateFactory, List<String> lines) throws IOException, CircuitFormatException;
 }

@@ -3,6 +3,7 @@ package com.mpolder.dp1.circuit;
 import com.mpolder.dp1.gate.IGate;
 import com.mpolder.dp1.gate.InputGate;
 import com.mpolder.dp1.gate.ProbeGate;
+import com.mpolder.dp1.gate.state.UnknownState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,10 @@ public class Circuit {
         gates = new ArrayList<>();
         inputs = new ArrayList<>();
         outputs = new ArrayList<>();
+    }
+
+    public void resetState() {
+        for(IGate gate : gates) gate.transferState(new UnknownState());
     }
 
     public void attachGate(IGate gate) {

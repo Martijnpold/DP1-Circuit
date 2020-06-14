@@ -1,4 +1,4 @@
-package com.mpolder.dp1.gate.ui;
+package com.mpolder.dp1.ui;
 
 import com.mpolder.dp1.circuit.Circuit;
 import com.mpolder.dp1.gate.IGate;
@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
 public class UIPanel extends JPanel {
+    private Circuit circuit;
     private HashMap<String, UIGate> gates;
 
     private UIGate drag;
@@ -31,9 +32,10 @@ public class UIPanel extends JPanel {
     }
 
     public void loadCircuit(Circuit circuit) {
-        addMouseListener(getMouseListener());
-        addMouseMotionListener(getMouseListener());
+        addMouseListener(getDragDropMouseListener());
+        addMouseMotionListener(getDragDropMouseListener());
 
+        this.circuit = circuit;
         gates.clear();
         for (IGate gate : circuit.getGates()) {
             gates.put(gate.getId(), new UIGate(gate));
@@ -70,11 +72,11 @@ public class UIPanel extends JPanel {
         }
     }
 
-    private MouseAdapter getMouseListener() {
+    private MouseAdapter getDragDropMouseListener() {
         return new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if(e.getButton() == 1) {
+                if (e.getButton() == 1) {
                     for (UIGate gate : gates.values()) {
                         if (gate.isAt(e.getX(), e.getY())) {
                             drag = gate;
@@ -82,10 +84,11 @@ public class UIPanel extends JPanel {
                         }
                     }
                 }
-                if(e.getButton() == 3) {
+                if (e.getButton() == 3) {
                     for (UIGate gate : gates.values()) {
                         if (gate.isAt(e.getX(), e.getY())) {
                             gate.toggle();
+                            circuit.resetState();
                             repaint();
                             return;
                         }
@@ -110,6 +113,14 @@ public class UIPanel extends JPanel {
         };
     }
 
+    /**
+     * Draw a string in the center of a rectangle
+     *
+     * @param g Graphics to draw on
+     * @param text String to draw
+     * @param rect Rectangle to draw within
+     * @param font Font to use
+     */
     private void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
         FontMetrics metrics = g.getFontMetrics(font);
         int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;

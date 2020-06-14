@@ -3,13 +3,12 @@ package com.mpolder.dp1.parse;
 import com.mpolder.dp1.gate.IGate;
 import com.mpolder.dp1.gate.IGateFactory;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class CircuitParser implements ICircuitParser {
-    public List<IGate> parse(IGateFactory gateFactory, List<String> lines) throws IOException {
+    public List<IGate> parse(IGateFactory gateFactory, List<String> lines) {
         HashMap<String, IGate> gates = new HashMap<>();
 
         for (String line : lines) {

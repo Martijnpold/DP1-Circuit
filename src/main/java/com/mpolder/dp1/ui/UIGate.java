@@ -1,4 +1,4 @@
-package com.mpolder.dp1.gate.ui;
+package com.mpolder.dp1.ui;
 
 import com.mpolder.dp1.gate.IGate;
 
@@ -63,6 +63,13 @@ public class UIGate {
         return size;
     }
 
+    /**
+     * Calculate rectangle on UIGate for labels
+     *
+     * @param id Index of label
+     * @param of Total labels
+     * @return Rectangle representing the label space
+     */
     public Rectangle drawSlot(int id, int of) {
         return new Rectangle(x, y + size / of * id, size, size / of);
     }

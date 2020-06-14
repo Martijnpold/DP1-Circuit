@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.io.File;
 
 public class CircuitFileSelector {
+    /**
+     * Let the user select a file to parse
+     *
+     * @return Selected file
+     */
     public File select() {
         JFileChooser fc = new JFileChooser();
         fc.setCurrentDirectory(new File("./"));

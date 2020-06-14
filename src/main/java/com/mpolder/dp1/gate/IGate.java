@@ -2,6 +2,8 @@ package com.mpolder.dp1.gate;
 
 import com.mpolder.dp1.circuit.Circuit;
 import com.mpolder.dp1.exception.CircuitFormatException;
+import com.mpolder.dp1.gate.state.INodeState;
+import com.mpolder.dp1.gate.state.UnknownState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +11,23 @@ import java.util.List;
 public abstract class IGate {
     private String id;
     protected List<IGate> outputs;
+    private INodeState state;
 
     public IGate(String id) {
         this.id = id;
         outputs = new ArrayList<>();
+        state = new UnknownState();
     }
 
     public boolean getOutput() {
-        return calculateOutput();
+        return state.value(this);
     }
 
-    abstract boolean calculateOutput();
+    public void transferState(INodeState newState) {
+        this.state = newState;
+    }
+
+    public abstract boolean calculateOutput();
 
     public abstract void attachInput(IGate gate) throws CircuitFormatException;
 
@@ -58,5 +66,13 @@ public abstract class IGate {
 
     public List<IGate> getOutputs() {
         return outputs;
+    }
+
+    public boolean isInput() {
+        return false;
+    }
+
+    public int calculateSimulationTime() {
+        return 0;
     }
 }

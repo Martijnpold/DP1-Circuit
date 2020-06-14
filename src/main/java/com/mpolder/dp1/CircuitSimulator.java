@@ -2,7 +2,7 @@ package com.mpolder.dp1;
 
 import com.mpolder.dp1.circuit.Circuit;
 import com.mpolder.dp1.circuit.CircuitBuilder;
-import com.mpolder.dp1.gate.ui.UIFrame;
+import com.mpolder.dp1.ui.UIFrame;
 import com.mpolder.dp1.parse.CircuitFileSelector;
 import com.mpolder.dp1.parse.FileReader;
 

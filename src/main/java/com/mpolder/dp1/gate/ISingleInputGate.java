@@ -3,6 +3,8 @@ package com.mpolder.dp1.gate;
 import com.mpolder.dp1.exception.CircuitFormatException;
 import com.mpolder.dp1.exception.CircuitNodeAlreadyAttachedException;
 
+import java.util.ArrayList;
+
 public abstract class ISingleInputGate extends IGate {
     protected IGate input;
 
