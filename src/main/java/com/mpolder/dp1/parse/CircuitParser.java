@@ -1,7 +1,5 @@
 package com.mpolder.dp1.parse;
 
-import com.mpolder.dp1.exception.CircuitFormatException;
-import com.mpolder.dp1.exception.CircuitNodeDetachedException;
 import com.mpolder.dp1.gate.IGate;
 import com.mpolder.dp1.gate.IGateFactory;
 
@@ -19,9 +17,8 @@ public class CircuitParser implements ICircuitParser {
         this.gateFactory = gateFactory;
     }
 
-    public List<IGate> parse() throws IOException, CircuitFormatException {
+    public List<IGate> parse() throws IOException {
         HashMap<String, IGate> gates = new HashMap<>();
-        List<IGate> unconnected = new ArrayList<>();
 
         for (String line : reader.read()) {
             String[] parts = line.split(":");
@@ -31,24 +28,15 @@ public class CircuitParser implements ICircuitParser {
                 if (!gates.containsKey(name)) {
                     IGate newGate = gateFactory.create(part, name);
                     gates.put(name, newGate);
-                    if (newGate.requiresOutput())
-                        unconnected.add(newGate);
                 } else {
                     IGate original = gates.get(name);
                     if (original != null) {
                         String[] toLink = part.split(",");
                         for (String link : toLink) {
                             gates.get(link).attachInput(original);
-                            unconnected.remove(original);
                         }
                     }
                 }
-            }
-        }
-        if (unconnected.size() > 0) throw new CircuitNodeDetachedException();
-        for (IGate gate : gates.values()) {
-            if (gate == null || !gate.validate()) {
-                throw new CircuitNodeDetachedException();
             }
         }
         return new ArrayList<>(gates.values());

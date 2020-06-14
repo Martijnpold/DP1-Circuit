@@ -8,7 +8,6 @@ import java.util.List;
 
 public abstract class IGate {
     private String id;
-    protected Boolean output;
     protected List<IGate> outputs;
 
     public IGate(String id) {
@@ -17,10 +16,7 @@ public abstract class IGate {
     }
 
     public boolean getOutput() {
-        if (output == null) {
-            output = calculateOutput();
-        }
-        return output;
+        return calculateOutput();
     }
 
     abstract boolean calculateOutput();
@@ -32,6 +28,10 @@ public abstract class IGate {
     }
 
     public void attachCircuit(Circuit circuit) {
+        //No default
+    }
+
+    public void toggle() {
         //No default
     }
 

@@ -30,6 +30,6 @@ public class GateFactory implements IGateFactory {
         if (gates.containsKey(gate)) {
             return gates.get(gate).cloneGate(id);
         }
-        throw new CircuitNodeTypeNotFoundException();
+        throw new CircuitNodeTypeNotFoundException("Node type " + gate + " is not available");
     }
 }

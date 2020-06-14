@@ -1,0 +1,4 @@
+A:	INPUT_HIGH;
+Cout:	PROBE;
+
+A:	Cout;

@@ -31,6 +31,10 @@ public class Circuit {
         outputs.add(gate);
     }
 
+    public List<IGate> getGates() {
+        return gates;
+    }
+
     public List<ProbeGate> getOutputs() {
         return outputs;
     }

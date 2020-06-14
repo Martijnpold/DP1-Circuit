@@ -1,0 +1,8 @@
+A:	INPUT_HIGH;
+B:	INPUT_HIGH;
+NODE:	OR;
+Cout:	PROBE;
+
+A:	NODE;
+B:	NODE;
+NODE:	Cout;

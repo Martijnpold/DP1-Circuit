@@ -1,0 +1,6 @@
+A:	INPUT_HIGH;
+NODE:	NOT;
+Cout:	PROBE;
+
+A:	NODE;
+NODE:	Cout;

@@ -1,0 +1,4 @@
+A:	INPUT_LOW;
+Cout:	PROBE;
+
+A:	Cout;

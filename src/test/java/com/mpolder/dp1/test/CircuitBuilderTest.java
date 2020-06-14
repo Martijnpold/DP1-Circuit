@@ -47,18 +47,14 @@ public class CircuitBuilderTest {
     }
 
     @Test
-    public void should_return_infiniteloop() {
+    public void should_throw_infiniteloop() {
         CircuitBuilder cb = new CircuitBuilder();
         cb.setReader(new FileReader(new File("test-circuits/full/c4_infiniteloop.txt")));
-        Circuit c = cb.build();
-        assertNotNull(c);
-        for (ProbeGate gate : c.getOutputs()) {
-            assertThrows(CircuitLoopException.class, gate::getOutput);
-        }
+        assertThrows(CircuitLoopException.class, cb::build);
     }
 
     @Test
-    public void should_return_notconnected() {
+    public void should_throw_notconnected() {
         CircuitBuilder cb = new CircuitBuilder();
         cb.setReader(new FileReader(new File("test-circuits/full/c5_notconnected.txt")));
         assertThrows(CircuitNodeDetachedException.class, cb::build);

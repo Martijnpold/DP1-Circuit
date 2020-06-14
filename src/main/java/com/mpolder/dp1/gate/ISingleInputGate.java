@@ -12,7 +12,8 @@ public abstract class ISingleInputGate extends IGate {
 
     @Override
     public void attachInput(IGate gate) throws CircuitFormatException {
-        if (input != null) throw new CircuitNodeAlreadyAttachedException();
+        if (input != null)
+            throw new CircuitNodeAlreadyAttachedException("The node " + getId() + " has too many inputs");
         gate.attachOutput(this);
         input = gate;
     }

@@ -5,7 +5,7 @@ import com.mpolder.dp1.exception.CircuitFormatException;
 import com.mpolder.dp1.exception.CircuitNodeAlreadyAttachedException;
 
 public class InputGate extends IGate {
-    private final boolean output;
+    private boolean output;
 
     InputGate(String id, boolean output) {
         super(id);
@@ -19,12 +19,17 @@ public class InputGate extends IGate {
 
     @Override
     public void attachInput(IGate gate) throws CircuitFormatException {
-        throw new CircuitNodeAlreadyAttachedException();
+        throw new CircuitNodeAlreadyAttachedException("The node " + getId() + " has too many inputs");
     }
 
     @Override
     public void attachCircuit(Circuit circuit) {
         circuit.attachInput(this);
+    }
+
+    @Override
+    public void toggle() {
+        this.output = !this.output;
     }
 
     @Override

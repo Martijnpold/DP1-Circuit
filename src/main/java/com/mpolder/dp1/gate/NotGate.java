@@ -12,7 +12,7 @@ public class NotGate extends ISingleInputGate {
         try {
             return !input.getOutput();
         } catch (StackOverflowError e) {
-            throw new CircuitLoopException();
+            throw new CircuitLoopException("Infinite loop detected in the circuit");
         }
     }
 
