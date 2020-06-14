@@ -3,6 +3,8 @@ package com.mpolder.dp1.circuit;
 import com.mpolder.dp1.exception.CircuitFormatException;
 import com.mpolder.dp1.exception.CircuitLoopException;
 import com.mpolder.dp1.exception.CircuitNodeDetachedException;
+import com.mpolder.dp1.exception.strategy.IExceptionStrategy;
+import com.mpolder.dp1.exception.strategy.LogStrategy;
 import com.mpolder.dp1.gate.GateFactory;
 import com.mpolder.dp1.gate.IGate;
 import com.mpolder.dp1.gate.IGateFactory;
@@ -20,11 +22,13 @@ public class CircuitBuilder {
     private IReader reader;
     private IGateFactory gateFactory;
     private ICircuitParser circuitParser;
+    private IExceptionStrategy exceptionStrategy;
 
     public CircuitBuilder() {
         reader = new FileReader(new File("circuit.txt"));
         gateFactory = new GateFactory();
         circuitParser = new CircuitParser();
+        exceptionStrategy = new LogStrategy();
     }
 
     /**
@@ -43,8 +47,7 @@ public class CircuitBuilder {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CircuitFormatException e) {
-            System.out.println("Could not construct a valid circuit using the given parameters");
-            System.out.println("Reason: " + e.getMessage());
+            exceptionStrategy.execute(e);
             throw e;
         }
         return null;
@@ -75,5 +78,9 @@ public class CircuitBuilder {
 
     public void setParser(ICircuitParser parser) {
         this.circuitParser = parser;
+    }
+
+    public void setStrategy(IExceptionStrategy exceptionStrategy) {
+        this.exceptionStrategy = exceptionStrategy;
     }
 }
