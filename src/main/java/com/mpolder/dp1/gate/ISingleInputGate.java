@@ -21,7 +21,7 @@ public abstract class ISingleInputGate extends IGate {
     }
 
     @Override
-    public boolean validateInput() {
+    protected boolean validateInput() {
         return input != null;
     }
 }

@@ -18,7 +18,7 @@ public abstract class IMultiInputGate extends IGate {
     }
 
     @Override
-    public boolean validateInput() {
+    protected boolean validateInput() {
         return inputs.size() > 0;
     }
 

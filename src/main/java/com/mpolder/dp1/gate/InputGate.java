@@ -33,12 +33,12 @@ public class InputGate extends IGate {
     }
 
     @Override
-    public boolean requiresOutput() {
+    protected boolean requiresOutput() {
         return false;
     }
 
     @Override
-    public boolean validateInput() {
+    protected boolean validateInput() {
         return true;
     }
 

@@ -43,13 +43,13 @@ public abstract class IGate {
         //No default
     }
 
-    public boolean requiresOutput() {
+    protected boolean requiresOutput() {
         return true;
     }
 
-    public abstract boolean validateInput();
+    protected abstract boolean validateInput();
 
-    public boolean validateOutput() {
+    protected boolean validateOutput() {
         if(!requiresOutput()) return true;
         return outputs.size() > 0;
     }
@@ -66,13 +66,5 @@ public abstract class IGate {
 
     public List<IGate> getOutputs() {
         return outputs;
-    }
-
-    public boolean isInput() {
-        return false;
-    }
-
-    public int calculateSimulationTime() {
-        return 0;
     }
 }

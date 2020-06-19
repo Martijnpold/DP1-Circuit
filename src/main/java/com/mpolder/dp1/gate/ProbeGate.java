@@ -18,7 +18,7 @@ public class ProbeGate extends ISingleInputGate {
     }
 
     @Override
-    public boolean requiresOutput() {
+    protected boolean requiresOutput() {
         return false;
     }
 
